@@ -49,10 +49,10 @@ Sends text messages notifying selected contacts when user has reached his or her
 **Required Must-have Stories**
 * Register Account/Set Up
 * Sign in to account
+* User can add and modify home location
+* User can send texts to trusted contacts
 * Add contacts through iPhone contacts
-* Input location 
-* Toggle Alert for Contacts
-* Change location for home
+* Toggle text alert for Contacts
 
 **Optional Nice-to-have Stories**
 
