@@ -48,14 +48,11 @@ Sends text messages notifying selected contacts when user has reached his or her
 
 **Required Must-have Stories**
 * Register Account/Set Up
-* Input phone number
-* Input name 
-* Choose Favorites 
+* Sign in to account
+* Add contacts through iPhone contacts
 * Input location 
-* Turn On/Off Alert Per Contacts
-* Toggle alert for contacts 
-* Add Contacts
-* Add new contacts from phone to favorites 
+* Toggle Alert for Contacts
+* Change location for home
 
 **Optional Nice-to-have Stories**
 
