@@ -14,6 +14,7 @@
 		650CCEDE2272A247002094D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650CCEDC2272A247002094D5 /* LaunchScreen.storyboard */; };
 		65B5E290227BD271008279FD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5E28F227BD271008279FD /* LoginViewController.swift */; };
 		65B5E292227BD282008279FD /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5E291227BD282008279FD /* DashboardViewController.swift */; };
+		65B5E2B222826B48008279FD /* ContactStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5E2B122826B48008279FD /* ContactStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		650CCEDF2272A247002094D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65B5E28F227BD271008279FD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65B5E291227BD282008279FD /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		65B5E2B122826B48008279FD /* ContactStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				650CCEDF2272A247002094D5 /* Info.plist */,
 				65B5E28F227BD271008279FD /* LoginViewController.swift */,
 				65B5E291227BD282008279FD /* DashboardViewController.swift */,
+				65B5E2B122826B48008279FD /* ContactStruct.swift */,
 			);
 			path = YouHome;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				65B5E290227BD271008279FD /* LoginViewController.swift in Sources */,
 				65B5E292227BD282008279FD /* DashboardViewController.swift in Sources */,
 				650CCED42272A244002094D5 /* AppDelegate.swift in Sources */,
+				65B5E2B222826B48008279FD /* ContactStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
