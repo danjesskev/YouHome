@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
+        if PFUser.current() != nil {
+            let main = UIStoryboard(name: "Main", bundle: nil)
+            let dashboardNavigationController = main.instantiateViewController(withIdentifier: "dashboardNavigationController")
+            window?.rootViewController = dashboardNavigationController
+        }
+        
         return true
     }
 

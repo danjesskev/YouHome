@@ -8,13 +8,17 @@
 
 import UIKit
 import Contacts
+import ContactsUI
+import Parse
 
-class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     var contactStore = CNContactStore()
     var contacts = [ContactStruct]()
+    var CNContacts = [CNContact]()
+    var trustedContacts = [ContactStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +26,13 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         
         contactStore.requestAccess(for: .contacts) { (success, error) in
+            if let error = error {
+                print("Failed to request access", error)
+                return
+            }
             if success {
                 print("successfully granted access to contacts")
                 self.fetchContacts()
-            }
-            else {
-                print("not granted access to contacts")
             }
         }
         // Do any additional setup after loading the view.
@@ -38,12 +43,18 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as! ContactCell
+        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         let contactToShow = contacts[indexPath.row]
-        cell.textLabel?.text = contactToShow.givenName + " " + contactToShow.familyName
-        cell.detailTextLabel?.text = contactToShow.number
+        cell.nameLabel.text = contactToShow.givenName + " " + contactToShow.familyName
+        cell.phoneNumberLabel.text = contactToShow.number
+        cell.trustedSwitch.setOn(false, animated: false)
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func fetchContacts() {
@@ -54,17 +65,39 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
             try contactStore.enumerateContacts(with: request) { (contact, stop) in
                 let givenName = contact.givenName
                 let familyName = contact.familyName
-                let phoneNumber = (contact.phoneNumbers[0].value).value(forKey: "digits") as! String
+                let phoneNumber = contact.phoneNumbers[0].value.stringValue     //uses the first given number
                 
-                let contactToAdd = ContactStruct(givenName: givenName, familyName: familyName, number: phoneNumber)
+                let contactToAdd = ContactStruct(givenName: givenName, familyName: familyName, number: phoneNumber, trusted: false)
                 self.contacts.append(contactToAdd)
+                self.CNContacts.append(contact)
             }
             tableView.reloadData()
-            print(contacts.first?.givenName)
+            //print(contacts.first?.givenName)
+            
         }
         catch {
             print("some error with enumerating contacts")
         }
+        
+    }
+    
+    @IBAction func onLogout(_ sender: Any) {
+        
+        PFUser.logOut()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.window?.rootViewController = loginViewController
+        
+    }
+    
+    func testContact() {
+        let unkvc = CNContactViewController(forUnknownContact: CNContacts[0])
+        unkvc.message = "He knows his trees"
+        unkvc.contactStore = CNContactStore()
+        unkvc.delegate = self
+        unkvc.allowsActions = false
+        self.navigationController?.pushViewController(unkvc, animated: true)
     }
     
 

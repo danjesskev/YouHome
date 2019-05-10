@@ -7,10 +7,11 @@
 //
 
 import Foundation
-import Contacts
+//import Contacts
 
 struct ContactStruct {
     let givenName: String
     let familyName: String
-    let number: String //[CNLabeledValue<CNPhoneNumber>]
+    let number: String
+    let trusted: Bool
 }

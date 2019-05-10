@@ -47,12 +47,12 @@ Sends text messages notifying selected contacts when user has reached his or her
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* Register Account/Set Up
-* Sign in to account
-* User can add and modify home location
-* User can send texts to trusted contacts
-* Add contacts through iPhone contacts
-* Toggle text alert for Contacts
+- [x] Register Account/Set Up
+- [x] Sign in to account
+- [] User can add and modify home location
+- [] User can send texts to trusted contacts
+- [x] Add contacts through iPhone contacts
+- [] Toggle text alert for Contacts
 
 **Optional Nice-to-have Stories**
 
