@@ -11,7 +11,7 @@ import Contacts
 import ContactsUI
 import Parse
 
-class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate {
+class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,6 +37,11 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         // Do any additional setup after loading the view.
     }
+    
+    //func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //textField.resignFirstResponder()
+        //return true
+    //}
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
