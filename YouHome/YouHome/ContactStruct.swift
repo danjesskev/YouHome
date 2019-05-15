@@ -13,5 +13,5 @@ struct ContactStruct {
     let givenName: String
     let familyName: String
     let number: String
-    let trusted: Bool
+    var trusted: Bool
 }

@@ -10,20 +10,32 @@ import UIKit
 import Contacts
 import ContactsUI
 import Parse
+import CoreLocation
+import GooglePlaces
 
-class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate, UITextFieldDelegate {
+class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var homeTextField: UILabel!
     
     var contactStore = CNContactStore()
     var contacts = [ContactStruct]()
     var CNContacts = [CNContact]()
     var trustedContacts = [ContactStruct]()
+    var homeAddress = "9500 Gilman Drive"
+    static let geoCoder = CLGeocoder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let locationManager = CLLocationManager()
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startMonitoringVisits()
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
         
         contactStore.requestAccess(for: .contacts) { (success, error) in
             if let error = error {
@@ -38,10 +50,23 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view.
     }
     
-    //func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //textField.resignFirstResponder()
-        //return true
-    //}
+    @IBAction func onSetHome(_ sender: Any) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        
+        // Specify the place data types to return.
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+            UInt(GMSPlaceField.placeID.rawValue))!
+        autocompleteController.placeFields = fields
+        
+        // Specify a filter.
+        let filter = GMSAutocompleteFilter()
+        filter.type = .address
+        autocompleteController.autocompleteFilter = filter
+        
+        // Display the autocomplete view controller.
+        present(autocompleteController, animated: true, completion: nil)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
@@ -54,6 +79,9 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.nameLabel.text = contactToShow.givenName + " " + contactToShow.familyName
         cell.phoneNumberLabel.text = contactToShow.number
         cell.trustedSwitch.setOn(false, animated: false)
+        if cell.trustedSwitch.isOn {
+            contacts[indexPath.row].trusted = true
+        }
         return cell
         
     }
@@ -96,16 +124,9 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
-    func testContact() {
-        let unkvc = CNContactViewController(forUnknownContact: CNContacts[0])
-        unkvc.message = "He knows his trees"
-        unkvc.contactStore = CNContactStore()
-        unkvc.delegate = self
-        unkvc.allowsActions = false
-        self.navigationController?.pushViewController(unkvc, animated: true)
+    override func viewDidAppear(_ animated: Bool) {
+        homeTextField.text = homeAddress
     }
-    
-
     /*
     // MARK: - Navigation
 
@@ -116,4 +137,38 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     */
 
+}
+
+extension DashboardViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Successfully selected address")
+        print("Place name: \(place.name)")
+        UserDefaults.standard.set(place.name, forKey: "homeAddress")
+        homeAddress = UserDefaults.standard.string(forKey: "homeAddress")!
+        //print("Place ID: \(place.placeID)")
+        //print("Place attributions: \(place.attributions)")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }

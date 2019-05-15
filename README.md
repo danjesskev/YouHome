@@ -29,7 +29,7 @@ Sends text messages notifying selected contacts when user has reached his or her
 **Required Must-have Stories**
 - [x] Register Account/Set Up
 - [x] Sign in to account
-- [ ] User can add and modify home location
+- [x] User can add and modify home location
 - [ ] User can send texts to trusted contacts
 - [x] Add contacts through iPhone contacts
 - [ ] Toggle text alert for Contacts

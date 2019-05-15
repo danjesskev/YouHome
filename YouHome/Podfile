@@ -8,5 +8,6 @@ target 'YouHome' do
   # Pods for YouHome
   pod "Parse"
   pod "AlamofireImage"
+  pod 'GooglePlaces'
 
 end

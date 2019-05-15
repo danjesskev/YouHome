@@ -18,8 +18,22 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSContactsUsageDescription</key>
+	<string>let me access ur contacts bruh</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please select "Always Allow" so we can alert your trusted contacts when you have reached home safely</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>hi</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>pls</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -28,8 +42,6 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>NSContactsUsageDescription</key>
-	<string>let me access ur contacts bruh</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -1,8 +1,11 @@
 PODS:
-  - Alamofire (4.8.1)
-  - AlamofireImage (3.5.0):
+  - Alamofire (4.8.2)
+  - AlamofireImage (3.5.2):
     - Alamofire (~> 4.8)
   - Bolts/Tasks (1.9.0)
+  - GoogleMaps/Base (3.1.0)
+  - GooglePlaces (3.1.0):
+    - GoogleMaps/Base (= 3.1.0)
   - Parse (1.17.2):
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
@@ -10,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage
+  - GooglePlaces
   - Parse
 
 SPEC REPOS:
@@ -17,14 +21,18 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - Bolts
+    - GoogleMaps
+    - GooglePlaces
     - Parse
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
+  GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
 
-PODFILE CHECKSUM: f936294087fa2fdd9f0cb7c14b011434fbf0cf44
+PODFILE CHECKSUM: b4899fd368a4b1b964a3fcacc268dd99c21462ec
 
 COCOAPODS: 1.6.0

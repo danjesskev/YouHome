@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import CoreLocation
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let dashboardNavigationController = main.instantiateViewController(withIdentifier: "dashboardNavigationController")
             window?.rootViewController = dashboardNavigationController
         }
+        GMSPlacesClient.provideAPIKey("AIzaSyA11ARrMjOvd857uWcOSOB3q-ILOAWMlOE")
         
         return true
     }
