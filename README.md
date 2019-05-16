@@ -1,10 +1,7 @@
-g# Honey-Im-Home
-
+# Honey-Im-Home
 
 Unit 8: Group Milestone
 ===
-
-# TUNIN
 
 ## Table of Contents
 1. [Overview](#Overview)
