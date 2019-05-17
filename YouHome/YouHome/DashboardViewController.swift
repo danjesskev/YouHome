@@ -17,6 +17,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var homeTextField: UILabel!
+    let locationManager:CLLocationManager = CLLocationManager()
     
     var contactStore = CNContactStore()
     var contacts = [ContactStruct]()
@@ -30,12 +31,15 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         
-        let locationManager = CLLocationManager()
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startMonitoringVisits()
         locationManager.delegate = self
-        locationManager.allowsBackgroundLocationUpdates = true
+
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+
+        locationManager.distanceFilter = 50
+        
+      //  let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(<#T##latitude: CLLocationDegrees##CLLocationDegrees#>, <#T##longitude: CLLocationDegrees##CLLocationDegrees#>), radius: <#T##CLLocationDistance#>, identifier: <#T##String#>)
+      //  locationManager.allowsBackgroundLocationUpdates = true
         
         contactStore.requestAccess(for: .contacts) { (success, error) in
             if let error = error {
@@ -48,6 +52,12 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         // Do any additional setup after loading the view.
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for currentLocation in locations{
+            print("\(index): \(currentLocation)")
+            
+        }
     }
     
     @IBAction func onSetHome(_ sender: Any) {
