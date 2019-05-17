@@ -21,9 +21,11 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var contactStore = CNContactStore()
     var contacts = [ContactStruct]()
-    var CNContacts = [CNContact]()
-    var trustedContacts = [ContactStruct]()
+    //var CNContacts = [CNContact]()
+    //var trustedContacts = [ContactStruct]()
     var homeAddress = "9500 Gilman Drive"
+    var homeLatitude = CLLocationDegrees()
+    var homeLongitude = CLLocationDegrees()
     static let geoCoder = CLGeocoder()
     
     override func viewDidLoad() {
@@ -38,7 +40,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
 
         locationManager.distanceFilter = 50
         
-      //  let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(<#T##latitude: CLLocationDegrees##CLLocationDegrees#>, <#T##longitude: CLLocationDegrees##CLLocationDegrees#>), radius: <#T##CLLocationDistance#>, identifier: <#T##String#>)
+        //let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(<#T##latitude: CLLocationDegrees##CLLocationDegrees#>, <#T##longitude: CLLocationDegrees##CLLocationDegrees#>), radius: <#T##CLLocationDistance#>, identifier: <#T##String#>)
       //  locationManager.allowsBackgroundLocationUpdates = true
         
         contactStore.requestAccess(for: .contacts) { (success, error) in
@@ -66,7 +68,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Specify the place data types to return.
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-            UInt(GMSPlaceField.placeID.rawValue))!
+            UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.coordinate.rawValue))!
         autocompleteController.placeFields = fields
         
         // Specify a filter.
@@ -112,7 +114,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 let contactToAdd = ContactStruct(givenName: givenName, familyName: familyName, number: phoneNumber, trusted: false)
                 self.contacts.append(contactToAdd)
-                self.CNContacts.append(contact)
+                //self.CNContacts.append(contact)
             }
             tableView.reloadData()
             //print(contacts.first?.givenName)
@@ -135,7 +137,12 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        homeTextField.text = homeAddress
+        homeTextField.text = UserDefaults.standard.string(forKey: "homeAddress")
+        //homeLongitude = UserDefaults.standard.double(forKey: "homeLongitude")
+        //homeLatitude = UserDefaults.standard.double(forKey: "homeLatitude")
+        print(homeAddress)
+        print(UserDefaults.standard.double(forKey: "homeLatitude"))
+        print(UserDefaults.standard.double(forKey: "homeLongitude"))
     }
     /*
     // MARK: - Navigation
@@ -157,8 +164,11 @@ extension DashboardViewController: GMSAutocompleteViewControllerDelegate {
         print("Place name: \(place.name)")
         UserDefaults.standard.set(place.name, forKey: "homeAddress")
         homeAddress = UserDefaults.standard.string(forKey: "homeAddress")!
-        //print("Place ID: \(place.placeID)")
-        //print("Place attributions: \(place.attributions)")
+        homeLatitude = place.coordinate.latitude
+        homeLongitude = place.coordinate.longitude
+        UserDefaults.standard.set(homeLatitude, forKey: "homeLatitude")
+        UserDefaults.standard.set(homeLongitude, forKey: "homeLongitude")
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -169,6 +179,7 @@ extension DashboardViewController: GMSAutocompleteViewControllerDelegate {
     
     // User canceled the operation.
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        print("USER CANCELLED OPERATION")
         dismiss(animated: true, completion: nil)
     }
     
