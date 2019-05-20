@@ -24,12 +24,12 @@
 	<true/>
 	<key>NSContactsUsageDescription</key>
 	<string>let me access ur contacts bruh</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Please select "Always Allow" so we can alert your trusted contacts when you have reached home safely</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>hi</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>pls</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please select &quot;Always Allow&quot; so we can alert your trusted contacts when you have reached home safely</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>hi</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

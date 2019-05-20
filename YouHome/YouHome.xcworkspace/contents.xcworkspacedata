@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/daniel/Documents/Honey-Im-Home/YouHome/SixthToGeisel.gpx">
+   </FileRef>
+   <FileRef
       location = "group:YouHome.xcodeproj">
    </FileRef>
    <FileRef

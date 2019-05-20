@@ -23,9 +23,9 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     var contacts = [ContactStruct]()
     //var CNContacts = [CNContact]()
     //var trustedContacts = [ContactStruct]()
-    var homeAddress = "9500 Gilman Drive"
-    var homeLatitude = CLLocationDegrees()
-    var homeLongitude = CLLocationDegrees()
+    var homeAddress = "9500 Gilman Drive" //DEFAULT VALUE
+    var homeLatitude = CLLocationDegrees(32.878466)
+    var homeLongitude = CLLocationDegrees(-117.229582)
     static let geoCoder = CLGeocoder()
     
     override func viewDidLoad() {
@@ -34,15 +34,14 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         
         locationManager.delegate = self
-
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 100
         
-        //let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(<#T##latitude: CLLocationDegrees##CLLocationDegrees#>, <#T##longitude: CLLocationDegrees##CLLocationDegrees#>), radius: <#T##CLLocationDistance#>, identifier: <#T##String#>)
-      //  locationManager.allowsBackgroundLocationUpdates = true
+        //print("CREATING GEOFENCE WITH \(homeLatitude) , \(homeLongitude)")
         
+        //let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(homeLatitude, homeLongitude), radius: 75, identifier: "Home")
+        //locationManager.startMonitoring(for: geoFenceRegion)
         contactStore.requestAccess(for: .contacts) { (success, error) in
             if let error = error {
                 print("Failed to request access", error)
@@ -61,7 +60,22 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }
     }
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("ENTERED REGION: will alert contacts")
+    }
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("EXITED REGION")
+    }
     
+    @IBAction func onAlert(_ sender: Any) {
+        //if current user location is within home region....
+        
+        //if current user location is not within home region, didEnterRegion
+        //should alert contacts
+        print("in onAlert: CREATING GEOFENCE WITH \(homeLatitude) , \(homeLongitude)")
+        let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(homeLatitude, homeLongitude), radius: 75, identifier: "Home")
+        locationManager.startMonitoring(for: geoFenceRegion)
+    }
     @IBAction func onSetHome(_ sender: Any) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -140,7 +154,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         homeTextField.text = UserDefaults.standard.string(forKey: "homeAddress")
         //homeLongitude = UserDefaults.standard.double(forKey: "homeLongitude")
         //homeLatitude = UserDefaults.standard.double(forKey: "homeLatitude")
-        print(homeAddress)
+        print("CURRENT HOME LOCATION IS: \(homeAddress)")
         print(UserDefaults.standard.double(forKey: "homeLatitude"))
         print(UserDefaults.standard.double(forKey: "homeLongitude"))
     }
