@@ -157,9 +157,12 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0XF-sO-BQY">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0XF-sO-BQY">
                                                     <rect key="frame" x="303" y="23" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.49590276110616588" green="0.98829740290000001" blue="0.9183569260665877" alpha="0.88904644690000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="onSwitch:" destination="9L0-b6-LOt" eventType="valueChanged" id="KWp-Dh-HHC"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" red="0.016336731130000001" green="0.08587946548" blue="0.16444705309999999" alpha="0.68763754399999999" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,7 +178,7 @@
                                         <connections>
                                             <outlet property="nameLabel" destination="Xrz-m7-RRh" id="BQI-ZZ-84w"/>
                                             <outlet property="phoneNumberLabel" destination="u3d-C3-PLi" id="RtJ-DJ-Zwg"/>
-                                            <outlet property="trustedSwitch" destination="0XF-sO-BQY" id="tBe-ew-bC5"/>
+                                            <outlet property="trustedSwitch" destination="0XF-sO-BQY" id="tIh-Pb-s3m"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

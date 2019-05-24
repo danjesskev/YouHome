@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/LoginViewController.swift"
-            timestampString = "580354900.392336"
+            timestampString = "580376517.28916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.392431"
+            timestampString = "580377171.437583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "viewController(_:didAutocompleteWith:)"
-            landmarkType = "7">
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "DashboardViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/ContactCell.swift"
-            timestampString = "580354900.393117"
+            timestampString = "580377171.438184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.393206"
+            timestampString = "580377171.438259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "4"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.393743"
+            timestampString = "580377171.438581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "5"
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.394172"
+            timestampString = "580377171.438995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "viewController(_:didAutocompleteWith:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "sendData(num:name:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.394649"
+            timestampString = "580377171.439382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "sendData(num:name:)"
             landmarkType = "7">
             <Locations>
@@ -154,44 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.395298"
+            timestampString = "580377171.43971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "DashboardViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.398314"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "DashboardViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.398847"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,11 +170,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YouHome/DashboardViewController.swift"
-            timestampString = "580354900.39921"
+            timestampString = "580377171.440032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YouHome/DashboardViewController.swift"
+            timestampString = "580377171.4403501"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "DashboardViewController"
             landmarkType = "3">
          </BreakpointContent>

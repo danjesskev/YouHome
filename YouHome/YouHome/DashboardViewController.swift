@@ -16,6 +16,8 @@ import Alamofire
 
 class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
+    let userDefaults = UserDefaults.standard
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var homeTextField: UILabel!
     let locationManager:CLLocationManager = CLLocationManager()
@@ -63,7 +65,9 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("ENTERED REGION: will alert contacts")
-        for contact in contacts {
+        let decoded = userDefaults.data(forKey: "contacts")
+        let decodedContacts = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [ContactStruct]
+        for contact in decodedContacts {
             if(contact.trusted == true) {
                 sendData(num: contact.number, name: contact.givenName )
             }
@@ -107,15 +111,26 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as! ContactCell
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        let contactToShow = contacts[indexPath.row]
+        let decoded = userDefaults.data(forKey: "contacts")
+        let decodedContacts = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as! [ContactStruct]
+        let contactToShow = decodedContacts[indexPath.row]
         cell.nameLabel.text = contactToShow.givenName + " " + contactToShow.familyName
         cell.phoneNumberLabel.text = contactToShow.number
-        cell.trustedSwitch.setOn(false, animated: false)
-        if cell.trustedSwitch.isOn {
-            contacts[indexPath.row].trusted = true
+        
+        if contactToShow.trusted == true {
+            cell.trustedSwitch.setOn(true, animated: true)
+        } else {
+            cell.trustedSwitch.setOn(false, animated: false)
         }
+
+        cell.indexNum = indexPath.row
+      
         return cell
         
+    }
+    
+    func switchChanged(_ sender: UISwitch!) {
+        print("switched")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -143,6 +158,10 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         catch {
             print("some error with enumerating contacts")
         }
+        
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: contacts)
+        userDefaults.set(encodedData, forKey: "contacts")
+        userDefaults.synchronize()
         
     }
     
