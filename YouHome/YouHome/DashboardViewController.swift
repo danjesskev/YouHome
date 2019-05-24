@@ -12,6 +12,7 @@ import ContactsUI
 import Parse
 import CoreLocation
 import GooglePlaces
+import Alamofire
 
 class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CNContactViewControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
@@ -62,6 +63,11 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("ENTERED REGION: will alert contacts")
+        for contact in contacts {
+            if(contact.trusted == true) {
+                sendData(num: contact.number, name: contact.givenName )
+            }
+        }
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("EXITED REGION")
@@ -141,7 +147,6 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func onLogout(_ sender: Any) {
-        
         PFUser.logOut()
         let main = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
@@ -167,6 +172,21 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         // Pass the selected object to the new view controller.
     }
     */
+    // sends information to Twilio to generate SMS
+    func sendData( num: String, name: String ) {
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        
+        let parameters: Parameters = [
+            "To": num,
+            "Body": "Hi " + name + ", I'm Home! -" + UserDefaults.standard.string(forKey: "username")!,
+        ]
+        
+        Alamofire.request("https://iceberg-camel-3633.twil.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+            print(response)
+        }
+    }
 
 }
 
