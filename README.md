@@ -1,14 +1,15 @@
 # Honey-Im-Home
 
 Unit 8: Group Milestone
-===
+
+![](https://i.imgur.com/hbJ1Epb.gif)
 
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 
-![](https://i.imgur.com/hbJ1Epb.gif)
+
 
 ## Overview
 ### Description
