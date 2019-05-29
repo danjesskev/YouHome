@@ -8,6 +8,8 @@ Unit 8: Group Milestone
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 
+![](https://i.imgur.com/hbJ1Epb.gif)
+
 ## Overview
 ### Description
 Sends text messages notifying selected contacts when user has reached his or her home. 
